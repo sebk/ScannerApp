@@ -68,9 +68,11 @@
     
     CFDataRef vCardData = (__bridge CFDataRef)[vcardString dataUsingEncoding:NSUTF8StringEncoding];
     
-    ABAddressBookRef book = ABAddressBookCreateWithOptions(NULL, NULL);
+    if (!_addressBook) {
+        _addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
+    }
     
-    ABRecordRef defaultSource = ABAddressBookCopyDefaultSource(book);
+    ABRecordRef defaultSource = ABAddressBookCopyDefaultSource(_addressBook);
     CFArrayRef vCardPeople = ABPersonCreatePeopleInSourceWithVCardRepresentation(defaultSource, vCardData);
     for (CFIndex index = 0; index < CFArrayGetCount(vCardPeople); index++) {
         ABRecordRef person = CFArrayGetValueAtIndex(vCardPeople, index);

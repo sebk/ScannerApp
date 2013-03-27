@@ -12,6 +12,8 @@
 @interface VCardImporter : NSObject 
 
 @property(nonatomic, readonly) ABRecordRef parsedPerson;
+@property(nonatomic, readonly) ABAddressBookRef addressBook;
+
 
 -(void)parse:(NSString*)vcardString;
 

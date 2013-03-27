@@ -72,13 +72,14 @@ typedef enum {
             
             ABRecordRef person = _parser.parsedPerson;
             
-            ABPersonViewController *personController = [[ABPersonViewController alloc] init];
-            [personController setDisplayedPerson:person];
-            [personController setPersonViewDelegate:self];
-            [personController setAllowsEditing:YES];
-            [personController setAllowsActions:YES];
+            ABUnknownPersonViewController *picker = [[ABUnknownPersonViewController alloc] init];
+			picker.unknownPersonViewDelegate = self;
+			picker.displayedPerson = person;
+			picker.allowsAddingToAddressBook = YES;
+		    picker.allowsActions = YES;
             
-            [self.navigationController pushViewController:personController animated:YES];
+            
+            [self.navigationController pushViewController:picker animated:YES];
         }
     }
 }
@@ -88,13 +89,20 @@ typedef enum {
 }
 
 
-#pragma mark - ABPersonViewControllerDelegate
-
-- (BOOL) personViewController:(ABPersonViewController*)personView shouldPerformDefaultActionForPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifierForValue
+#pragma mark ABUnknownPersonViewControllerDelegate methods
+// Dismisses the picker when users are done creating a contact or adding the displayed person properties to an existing contact.
+- (void)unknownPersonViewController:(ABUnknownPersonViewController *)unknownPersonView didResolveToPerson:(ABRecordRef)person
 {
-    // This is where you pass the selected contact property elsewhere in your program
-    [[self navigationController] dismissViewControllerAnimated:YES completion:nil];
-    return NO;
+	[self dismissViewControllerAnimated:YES completion:nil];
 }
+
+
+// Does not allow users to perform default actions such as emailing a contact, when they select a contact property.
+- (BOOL)unknownPersonViewController:(ABUnknownPersonViewController *)personViewController shouldPerformDefaultActionForPerson:(ABRecordRef)person
+						   property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
+{
+	return NO;
+}
+
 
 @end

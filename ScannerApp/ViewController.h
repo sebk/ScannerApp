@@ -10,7 +10,7 @@
 #import "QRScanner.h"
 #import <AddressBookUI/AddressBookUI.h>
 
-@interface ViewController : UIViewController <QRScannerDelegate, ABPersonViewControllerDelegate>
+@interface ViewController : UIViewController <QRScannerDelegate, ABPersonViewControllerDelegate, ABUnknownPersonViewControllerDelegate>
 
 @property(nonatomic, weak) IBOutlet UITextView *textView;
 
