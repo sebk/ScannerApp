@@ -41,6 +41,8 @@
 		969E61CD17034B9200E3C50C /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 969E61CC17034B9200E3C50C /* Icon@2x.png */; };
 		969E61CF17034B9900E3C50C /* Icon~iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 969E61CE17034B9900E3C50C /* Icon~iPad.png */; };
 		969E61D117034B9D00E3C50C /* Icon~iPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 969E61D017034B9D00E3C50C /* Icon~iPad@2x.png */; };
+		969E61D9170353E500E3C50C /* CardScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 969E61D7170353E500E3C50C /* CardScanViewController.m */; };
+		969E61DA170353E500E3C50C /* CardScanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 969E61D8170353E500E3C50C /* CardScanViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,8 +99,8 @@
 		965E53A716F9E4DD004BE457 /* QRScanner.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = QRScanner.mm; sourceTree = "<group>"; };
 		965E53AA16F9E4E3004BE457 /* CardReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardReader.h; sourceTree = "<group>"; };
 		965E53AB16F9E4E3004BE457 /* CardReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardReader.m; sourceTree = "<group>"; };
-		965E53AC16F9E4E3004BE457 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		965E53AD16F9E4E3004BE457 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		965E53AC16F9E4E3004BE457 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = OCR/LICENSE; sourceTree = "<group>"; };
+		965E53AD16F9E4E3004BE457 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = OCR/README.md; sourceTree = "<group>"; };
 		965E53BD16F9E4E3004BE457 /* allheaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = allheaders.h; sourceTree = "<group>"; };
 		965E53BE16F9E4E3004BE457 /* alltypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = alltypes.h; sourceTree = "<group>"; };
 		965E53BF16F9E4E3004BE457 /* array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = array.h; sourceTree = "<group>"; };
@@ -244,16 +246,19 @@
 		965E544C16F9E4E4004BE457 /* werdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = werdit.h; sourceTree = "<group>"; };
 		965E544E16F9E4E4004BE457 /* liblept.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblept.a; sourceTree = "<group>"; };
 		965E544F16F9E4E4004BE457 /* libtesseract_all.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtesseract_all.a; sourceTree = "<group>"; };
-		965E545016F9E4E4004BE457 /* Tesseract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tesseract.h; sourceTree = "<group>"; };
-		965E545116F9E4E4004BE457 /* Tesseract.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Tesseract.mm; sourceTree = "<group>"; };
+		965E545016F9E4E4004BE457 /* Tesseract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tesseract.h; path = OCR/Tesseract.h; sourceTree = "<group>"; };
+		965E545116F9E4E4004BE457 /* Tesseract.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Tesseract.mm; path = OCR/Tesseract.mm; sourceTree = "<group>"; };
 		965E546416F9E4EA004BE457 /* VCardImporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCardImporter.h; sourceTree = "<group>"; };
 		965E546516F9E4EA004BE457 /* VCardImporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCardImporter.m; sourceTree = "<group>"; };
-		965E546716F9E4FE004BE457 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
+		965E546716F9E4FE004BE457 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; name = tessdata; path = OCR/tessdata; sourceTree = "<group>"; };
 		965E547216FC7616004BE457 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		969E61CA17034B8E00E3C50C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		969E61CC17034B9200E3C50C /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		969E61CE17034B9900E3C50C /* Icon~iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~iPad.png"; sourceTree = "<group>"; };
 		969E61D017034B9D00E3C50C /* Icon~iPad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~iPad@2x.png"; sourceTree = "<group>"; };
+		969E61D6170353E500E3C50C /* CardScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardScanViewController.h; sourceTree = "<group>"; };
+		969E61D7170353E500E3C50C /* CardScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardScanViewController.m; sourceTree = "<group>"; };
+		969E61D8170353E500E3C50C /* CardScanViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardScanViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -374,14 +379,8 @@
 		965E53A916F9E4E3004BE457 /* OCR */ = {
 			isa = PBXGroup;
 			children = (
-				965E546716F9E4FE004BE457 /* tessdata */,
 				965E53AA16F9E4E3004BE457 /* CardReader.h */,
 				965E53AB16F9E4E3004BE457 /* CardReader.m */,
-				965E53AC16F9E4E3004BE457 /* LICENSE */,
-				965E53AD16F9E4E3004BE457 /* README.md */,
-				965E53BA16F9E4E3004BE457 /* tesseract-ios-lib */,
-				965E545016F9E4E4004BE457 /* Tesseract.h */,
-				965E545116F9E4E4004BE457 /* Tesseract.mm */,
 			);
 			path = OCR;
 			sourceTree = "<group>";
@@ -392,7 +391,8 @@
 				965E53BB16F9E4E3004BE457 /* include */,
 				965E544D16F9E4E4004BE457 /* lib */,
 			);
-			path = "tesseract-ios-lib";
+			name = "tesseract-ios-lib";
+			path = "OCR/tesseract-ios-lib";
 			sourceTree = "<group>";
 		};
 		965E53BB16F9E4E3004BE457 /* include */ = {
@@ -582,6 +582,7 @@
 		969E61D217034BA500E3C50C /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				969E61D51703536D00E3C50C /* tesseract */,
 				965E538A16F9E47C004BE457 /* zxing */,
 			);
 			name = Dependencies;
@@ -606,8 +607,24 @@
 				965E537D16F9E46E004BE457 /* ViewController.m */,
 				965E537F16F9E46E004BE457 /* ViewController_iPhone.xib */,
 				965E538216F9E46E004BE457 /* ViewController_iPad.xib */,
+				969E61D6170353E500E3C50C /* CardScanViewController.h */,
+				969E61D7170353E500E3C50C /* CardScanViewController.m */,
+				969E61D8170353E500E3C50C /* CardScanViewController.xib */,
 			);
 			name = Example;
+			sourceTree = "<group>";
+		};
+		969E61D51703536D00E3C50C /* tesseract */ = {
+			isa = PBXGroup;
+			children = (
+				965E546716F9E4FE004BE457 /* tessdata */,
+				965E53AC16F9E4E3004BE457 /* LICENSE */,
+				965E53AD16F9E4E3004BE457 /* README.md */,
+				965E53BA16F9E4E3004BE457 /* tesseract-ios-lib */,
+				965E545016F9E4E4004BE457 /* Tesseract.h */,
+				965E545116F9E4E4004BE457 /* Tesseract.mm */,
+			);
+			name = tesseract;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -698,6 +715,7 @@
 				969E61CD17034B9200E3C50C /* Icon@2x.png in Resources */,
 				969E61CF17034B9900E3C50C /* Icon~iPad.png in Resources */,
 				969E61D117034B9D00E3C50C /* Icon~iPad@2x.png in Resources */,
+				969E61DA170353E500E3C50C /* CardScanViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -715,6 +733,7 @@
 				965E545216F9E4E4004BE457 /* CardReader.m in Sources */,
 				965E546216F9E4E4004BE457 /* Tesseract.mm in Sources */,
 				965E546616F9E4EA004BE457 /* VCardImporter.m in Sources */,
+				969E61D9170353E500E3C50C /* CardScanViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

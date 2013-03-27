@@ -10,7 +10,7 @@
 #import "QRScanner.h"
 #import <AddressBookUI/AddressBookUI.h>
 
-@interface ViewController : UIViewController <QRScannerDelegate, ABPersonViewControllerDelegate, ABUnknownPersonViewControllerDelegate>
+@interface ViewController : UIViewController <QRScannerDelegate, ABUnknownPersonViewControllerDelegate>
 
 @property(nonatomic, weak) IBOutlet UITextView *textView;
 
@@ -18,5 +18,7 @@
 -(IBAction)showQRWidget:(id)sender;
 
 -(IBAction)scanVCard:(id)sender;
+
+-(IBAction)scanCard:(id)sender;
 
 @end

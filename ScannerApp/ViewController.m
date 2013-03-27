@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "VCardImporter.h"
+#import "CardScanViewController.h"
 
 typedef enum {
    ScanModeQR,
@@ -55,11 +56,15 @@ typedef enum {
     [self openQRWidget];
 }
 
+-(IBAction)scanCard:(id)sender {
+    CardScanViewController *controller = [[CardScanViewController alloc] initWithNibName:@"CardScanViewController" bundle:nil];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
 
 #pragma mark - QRScanner delegate
 
 - (void)didScannedCode:(NSString*)result {
-    NSLog(@"Result: %@", result);
     
     if (_scanMode == ScanModeQR) {
         _textView.text = result;
@@ -77,7 +82,6 @@ typedef enum {
 			picker.displayedPerson = person;
 			picker.allowsAddingToAddressBook = YES;
 		    picker.allowsActions = YES;
-            
             
             [self.navigationController pushViewController:picker animated:YES];
         }
