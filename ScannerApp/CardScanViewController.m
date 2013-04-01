@@ -116,12 +116,7 @@
 #pragma mark - UIImagePickerControllerDelegate
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editInfo {
-    
-    //[[picker parentViewController] dismissModalViewControllerAnimated:YES];
-    //[_ipc dismissModalViewControllerAnimated:YES];
-    
 
-    
     _imageView.image = image;
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
@@ -134,11 +129,6 @@
     else {
         [picker dismissViewControllerAnimated:YES completion:nil];
     }
-    
-    
-    //CardReader *reader = [[CardReader alloc] init];
-    //NSString *result = [reader scanCard:image];
-    //_textView.text = result;
 }
 
 

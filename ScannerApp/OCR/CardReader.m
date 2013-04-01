@@ -23,7 +23,8 @@ int const maxImagePixelsAmount = 3200000; // 3.2 MP
         
         [tesseract setVariableValue:@"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz@.:/()& " forKey:@"tessedit_char_whitelist"];
         
-        [tesseract setImage:gs_convert_image(image)];
+        [tesseract setImage:[self resizeImage:image]];
+        //[tesseract setImage:gs_convert_image(image)];
         //[tesseract setImage:scaleAndRotateImage(image, maxImagePixelsAmount)];
         
         [tesseract recognize];
@@ -31,6 +32,7 @@ int const maxImagePixelsAmount = 3200000; // 3.2 MP
         if (completion) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 completion([tesseract recognizedText]);
+
             });
            
         }
@@ -39,6 +41,62 @@ int const maxImagePixelsAmount = 3200000; // 3.2 MP
 
 
 #pragma mark - Image manipulation
+
+//http://www.iphonedevsdk.com/forum/iphone-sdk-development/7307-resizing-photo-new-uiimage.html#post33912
+static inline double radians (double degrees) {return degrees * M_PI/180;}
+-(UIImage *)resizeImage:(UIImage *)image {
+	
+	CGImageRef imageRef = [image CGImage];
+	CGImageAlphaInfo alphaInfo = CGImageGetAlphaInfo(imageRef);
+	CGColorSpaceRef colorSpaceInfo = CGColorSpaceCreateDeviceRGB();
+	
+	if (alphaInfo == kCGImageAlphaNone)
+		alphaInfo = kCGImageAlphaNoneSkipLast;
+	
+	int width, height;
+	
+	width = [image size].width;
+	height = [image size].height;
+	
+	CGContextRef bitmap;
+	
+	if (image.imageOrientation == UIImageOrientationUp | image.imageOrientation == UIImageOrientationDown) {
+		bitmap = CGBitmapContextCreate(NULL, width, height, CGImageGetBitsPerComponent(imageRef), CGImageGetBytesPerRow(imageRef), colorSpaceInfo, alphaInfo);
+		
+	} else {
+		bitmap = CGBitmapContextCreate(NULL, height, width, CGImageGetBitsPerComponent(imageRef), CGImageGetBytesPerRow(imageRef), colorSpaceInfo, alphaInfo);
+		
+	}
+	
+	if (image.imageOrientation == UIImageOrientationLeft) {
+		NSLog(@"image orientation left");
+		CGContextRotateCTM (bitmap, radians(90));
+		CGContextTranslateCTM (bitmap, 0, -height);
+		
+	} else if (image.imageOrientation == UIImageOrientationRight) {
+		NSLog(@"image orientation right");
+		CGContextRotateCTM (bitmap, radians(-90));
+		CGContextTranslateCTM (bitmap, -width, 0);
+		
+	} else if (image.imageOrientation == UIImageOrientationUp) {
+		NSLog(@"image orientation up");
+		
+	} else if (image.imageOrientation == UIImageOrientationDown) {
+		NSLog(@"image orientation down");
+		CGContextTranslateCTM (bitmap, width,height);
+		CGContextRotateCTM (bitmap, radians(-180.));
+		
+	}
+	
+	CGContextDrawImage(bitmap, CGRectMake(0, 0, width, height), imageRef);
+	CGImageRef ref = CGBitmapContextCreateImage(bitmap);
+	UIImage *result = [UIImage imageWithCGImage:ref];
+	
+	CGContextRelease(bitmap);
+	CGImageRelease(ref);
+	
+	return result;
+}
 
 //see: http://stackoverflow.com/questions/13511102/ios-tesseract-ocr-image-preperation
 UIImage * gs_convert_image (UIImage * src_img) {
