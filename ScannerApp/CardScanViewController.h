@@ -19,4 +19,6 @@
 
 -(IBAction)chooseFromLibrary:(id)sender;
 
+-(IBAction)scanImage:(id)sender;
+
 @end

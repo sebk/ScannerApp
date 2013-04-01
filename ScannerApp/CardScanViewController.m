@@ -13,6 +13,8 @@
     UIImagePickerController *_ipc;
 }
 
+@property(nonatomic, strong) UIPopoverController *popover;
+
 @end
 
 @implementation CardScanViewController
@@ -30,6 +32,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    self.title = @"Scan business card";
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,8 +59,24 @@
         _ipc = [[UIImagePickerController alloc] init];
         _ipc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         _ipc.delegate = self;
-        [self presentViewController:_ipc animated:YES completion:nil];
+        
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:_ipc];
+            [popover presentPopoverFromRect:((UIButton*)sender).bounds inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+            self.popover = popover;
+        } else {
+            [self presentViewController:_ipc animated:YES completion:nil];
+        }
     }
+}
+
+-(IBAction)scanImage:(id)sender {
+    CardReader *reader = [[CardReader alloc] init];
+    
+    dispatch_as
+    
+    NSString *result = [reader scanCard:_imageView.image];
+    _textView.text = result;
 }
 
 
@@ -71,7 +91,6 @@
     
     CardReader *reader = [[CardReader alloc] init];
     NSString *result = [reader scanCard:image];
-    
     _textView.text = result;
 }
 
