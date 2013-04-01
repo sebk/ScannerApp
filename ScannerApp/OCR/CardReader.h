@@ -9,6 +9,12 @@
 
 @interface CardReader : NSObject
 
-- (NSString*)scanCard:(UIImage*)image;
+/**
+ Scan the image.
+ This method uses Tesseract as the scanning processor.
+ @param image UIIMage to be scanned
+ @param completion Block with the NSString result. This block will be called on the main thread.
+ */
+- (void)scanCard:(UIImage*)image completion:(void (^)(NSString *result))completion;
 
 @end

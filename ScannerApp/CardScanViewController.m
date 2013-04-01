@@ -14,6 +14,7 @@
 }
 
 @property(nonatomic, strong) UIPopoverController *popover;
+@property(nonatomic, strong) UIView *waitingView;
 
 @end
 
@@ -46,6 +47,8 @@
 -(IBAction)chooseFromCamera:(id)sender {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
+        _imageView.image = nil;
+        
         _ipc = [[UIImagePickerController alloc] init];
         _ipc.sourceType = UIImagePickerControllerSourceTypeCamera;
         _ipc.delegate = self;
@@ -56,6 +59,8 @@
 -(IBAction)chooseFromLibrary:(id)sender {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary])
     {
+        _imageView.image = nil;
+        
         _ipc = [[UIImagePickerController alloc] init];
         _ipc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         _ipc.delegate = self;
@@ -73,10 +78,38 @@
 -(IBAction)scanImage:(id)sender {
     CardReader *reader = [[CardReader alloc] init];
     
-    dispatch_as
+    [self.view addSubview:self.waitingView];
     
-    NSString *result = [reader scanCard:_imageView.image];
-    _textView.text = result;
+    [reader scanCard:_imageView.image completion:^(NSString *result) {
+
+        _textView.text = result;
+        
+        [self.waitingView removeFromSuperview];
+        _waitingView = nil;
+    }];
+    
+}
+
+-(UIView*)waitingView {
+    if (!_waitingView) {
+        UIView *view = [[UIView alloc] initWithFrame:self.view.bounds];
+        [view setBackgroundColor:[UIColor grayColor]];
+        view.alpha = 0.8f;
+        
+        UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        indicator.center = view.center;
+        [indicator startAnimating];
+        
+        indicator.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+        
+        [view addSubview:indicator];
+        
+        view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        
+        _waitingView = view;
+    }
+    
+    return _waitingView;
 }
 
 
@@ -84,14 +117,28 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editInfo {
     
-    [[picker parentViewController] dismissModalViewControllerAnimated:YES];
-    [_ipc dismissModalViewControllerAnimated:TRUE];
-        
+    //[[picker parentViewController] dismissModalViewControllerAnimated:YES];
+    //[_ipc dismissModalViewControllerAnimated:YES];
+    
+
+    
     _imageView.image = image;
     
-    CardReader *reader = [[CardReader alloc] init];
-    NSString *result = [reader scanCard:image];
-    _textView.text = result;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        [self.popover dismissPopoverAnimated:YES];
+        
+        [[picker parentViewController] dismissModalViewControllerAnimated:YES];
+        [_ipc dismissModalViewControllerAnimated:YES];
+
+    }
+    else {
+        [picker dismissViewControllerAnimated:YES completion:nil];
+    }
+    
+    
+    //CardReader *reader = [[CardReader alloc] init];
+    //NSString *result = [reader scanCard:image];
+    //_textView.text = result;
 }
 
 

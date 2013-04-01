@@ -15,21 +15,26 @@ int const maxImagePixelsAmount = 3200000; // 3.2 MP
 @implementation CardReader
 
 
-- (NSString*)scanCard:(UIImage*)image {
+//- (NSString*)scanCard:(UIImage*)image {
+- (void)scanCard:(UIImage*)image completion:(void (^)(NSString *result))completion {
     
-    Tesseract* tesseract = [[Tesseract alloc] initWithDataPath:@"tessdata" language:@"eng"];
-    
-    [tesseract setVariableValue:@"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz@.:/()& " forKey:@"tessedit_char_whitelist"];
-    
-    [tesseract setImage:gs_convert_image(image)];
-    //[tesseract setImage:scaleAndRotateImage(image, maxImagePixelsAmount)];
-    //[tesseract setImage:image];
-    
-    [tesseract recognize];
-    
-    NSLog(@"%@", [tesseract recognizedText]);
-    
-    return [tesseract recognizedText];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        Tesseract* tesseract = [[Tesseract alloc] initWithDataPath:@"tessdata" language:@"eng"];
+        
+        [tesseract setVariableValue:@"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz@.:/()& " forKey:@"tessedit_char_whitelist"];
+        
+        [tesseract setImage:gs_convert_image(image)];
+        //[tesseract setImage:scaleAndRotateImage(image, maxImagePixelsAmount)];
+        
+        [tesseract recognize];
+        
+        if (completion) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion([tesseract recognizedText]);
+            });
+           
+        }
+    });
 }
 
 
