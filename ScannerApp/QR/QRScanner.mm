@@ -24,23 +24,34 @@
 #import "AztecReader.h"
 #endif
 
+#import "CustomOverlayView.h"
+
+
 @interface QRScanner () {
     UIViewController *_viewController;
+    ZXingWidgetController *_widController;
+    
 }
 
 @end
 
 @implementation QRScanner
 
--(BOOL)shouldAutorotate {
-    return YES;
-}
-
 - (void)presentScanWidgetOn:(UIViewController*)viewController {
     
     _viewController = viewController;
     
-    ZXingWidgetController *widController = [[ZXingWidgetController alloc] initWithDelegate:self showCancel:YES OneDMode:NO];
+    _widController = [[ZXingWidgetController alloc] initWithDelegate:self showCancel:YES OneDMode:NO];
+    
+    
+    CustomOverlayView *overlay = [[CustomOverlayView alloc] initWithFrame: _viewController.view.bounds
+                                                            cancelEnabled:YES oneDMode:NO showLicense:NO];
+    overlay.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
+    _widController.overlayView = overlay;
+    _widController.overlayView.delegate = _widController;
+
+    
     
     NSMutableSet *readers = [[NSMutableSet alloc ] init];
     
@@ -54,11 +65,12 @@
     [readers addObject:aztecReader];
 #endif
     
-    widController.readers = readers;
+    _widController.readers = readers;
     
-    [_viewController presentViewController:widController animated:YES completion:^{
+    [_viewController presentViewController:_widController animated:YES completion:^{
         NSLog(@"opened QR-Scanner-View");
     }];
+    
 }
 
 
@@ -70,23 +82,13 @@
         if (_delegate && [_delegate respondsToSelector:@selector(didScannedCode:)]) {
             [_delegate didScannedCode:result];
         }
-                
-        /*
-        NSArray *substrings = [result componentsSeparatedByString:@"\n"];
-        if (substrings.count > 0 && [substrings[0] isEqualToString:@"BEGIN:VCARD"]) {
-            _parser = [[VCardImporter alloc]init];
-            [_parser parse:result];
-            
-            [self performSegueWithIdentifier:@"showVcard" sender:self];
-            
-        }
-         */
         
     }];
 }
 
 - (void)zxingControllerDidCancel:(ZXingWidgetController*)controller {
-    [_viewController dismissViewControllerAnimated:YES completion:^{
+    [_viewController dismissViewControllerAnimated:NO completion:^{
+        
         if (_delegate && [_delegate respondsToSelector:@selector(didCancelScanning)]) {
             [_delegate didCancelScanning];
         }

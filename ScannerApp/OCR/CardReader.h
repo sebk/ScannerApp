@@ -15,6 +15,7 @@
  @param image UIIMage to be scanned
  @param completion Block with the NSString result. This block will be called on the main thread.
  */
-- (void)scanCard:(UIImage*)image completion:(void (^)(NSString *result))completion;
+//- (void)scanCard:(UIImage*)image completion:(void (^)(NSString *result))completion;
+- (void)scanCard:(UIImage*)image completion:(void (^)(NSString *result, UIImage *convertedImage))completion;
 
 @end

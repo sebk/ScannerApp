@@ -1,3 +1,6 @@
 [submodule "zxing"]
 	path = zxing
 	url = git://github.com/zxing/zxing.git
+[submodule "ScannerApp/OCR/tesseract-ios"]
+	path = ScannerApp/OCR/tesseract-ios
+	url = https://github.com/ldiqual/tesseract-ios

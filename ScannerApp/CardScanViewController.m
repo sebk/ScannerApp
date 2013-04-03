@@ -48,10 +48,14 @@
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
         _imageView.image = nil;
+        _textView.text = nil;
         
         _ipc = [[UIImagePickerController alloc] init];
         _ipc.sourceType = UIImagePickerControllerSourceTypeCamera;
         _ipc.delegate = self;
+        //_ipc.editing = YES;
+        [_ipc setAllowsEditing:YES];
+
         [self presentViewController:_ipc animated:YES completion:nil];
     }
 }
@@ -60,10 +64,12 @@
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary])
     {
         _imageView.image = nil;
+        _textView.text = nil;
         
         _ipc = [[UIImagePickerController alloc] init];
         _ipc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         _ipc.delegate = self;
+        [_ipc setAllowsEditing:YES];
         
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
             UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:_ipc];
@@ -80,8 +86,12 @@
     
     [self.view addSubview:self.waitingView];
     
-    [reader scanCard:_imageView.image completion:^(NSString *result) {
+    [reader scanCard:_imageView.image completion:^(NSString *result, UIImage *convertedImage) {
 
+        _imageView.image = nil;
+        [NSThread sleepForTimeInterval:2];
+        _imageView.image = convertedImage;
+        
         _textView.text = result;
         
         [self.waitingView removeFromSuperview];

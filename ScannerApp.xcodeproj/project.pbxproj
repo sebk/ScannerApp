@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9632FAC9170C12D1002FD314 /* CustomOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9632FAC8170C12D1002FD314 /* CustomOverlayView.m */; };
 		965E536516F9E46E004BE457 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 965E536416F9E46E004BE457 /* UIKit.framework */; };
 		965E536716F9E46E004BE457 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 965E536616F9E46E004BE457 /* Foundation.framework */; };
 		965E536916F9E46E004BE457 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 965E536816F9E46E004BE457 /* CoreGraphics.framework */; };
@@ -29,8 +30,6 @@
 		965E53A416F9E4C0004BE457 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 965E53A316F9E4C0004BE457 /* libiconv.dylib */; };
 		965E53A816F9E4DD004BE457 /* QRScanner.mm in Sources */ = {isa = PBXBuildFile; fileRef = 965E53A716F9E4DD004BE457 /* QRScanner.mm */; };
 		965E545216F9E4E4004BE457 /* CardReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 965E53AB16F9E4E3004BE457 /* CardReader.m */; };
-		965E545316F9E4E4004BE457 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 965E53AC16F9E4E3004BE457 /* LICENSE */; };
-		965E545416F9E4E4004BE457 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 965E53AD16F9E4E3004BE457 /* README.md */; };
 		965E546016F9E4E4004BE457 /* liblept.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 965E544E16F9E4E4004BE457 /* liblept.a */; };
 		965E546116F9E4E4004BE457 /* libtesseract_all.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 965E544F16F9E4E4004BE457 /* libtesseract_all.a */; };
 		965E546216F9E4E4004BE457 /* Tesseract.mm in Sources */ = {isa = PBXBuildFile; fileRef = 965E545116F9E4E4004BE457 /* Tesseract.mm */; };
@@ -70,6 +69,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9632FAC7170C12D1002FD314 /* CustomOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomOverlayView.h; sourceTree = "<group>"; };
+		9632FAC8170C12D1002FD314 /* CustomOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomOverlayView.m; sourceTree = "<group>"; };
+		9632FAD3170C926A002FD314 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		965E536116F9E46E004BE457 /* ScannerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScannerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		965E536416F9E46E004BE457 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		965E536616F9E46E004BE457 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -99,8 +101,8 @@
 		965E53A716F9E4DD004BE457 /* QRScanner.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = QRScanner.mm; sourceTree = "<group>"; };
 		965E53AA16F9E4E3004BE457 /* CardReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardReader.h; sourceTree = "<group>"; };
 		965E53AB16F9E4E3004BE457 /* CardReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardReader.m; sourceTree = "<group>"; };
-		965E53AC16F9E4E3004BE457 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = OCR/LICENSE; sourceTree = "<group>"; };
-		965E53AD16F9E4E3004BE457 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = OCR/README.md; sourceTree = "<group>"; };
+		965E53AC16F9E4E3004BE457 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = "OCR/tesseract-ios/LICENSE"; sourceTree = "<group>"; };
+		965E53AD16F9E4E3004BE457 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = "OCR/tesseract-ios/README.md"; sourceTree = "<group>"; };
 		965E53BD16F9E4E3004BE457 /* allheaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = allheaders.h; sourceTree = "<group>"; };
 		965E53BE16F9E4E3004BE457 /* alltypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = alltypes.h; sourceTree = "<group>"; };
 		965E53BF16F9E4E3004BE457 /* array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = array.h; sourceTree = "<group>"; };
@@ -246,8 +248,8 @@
 		965E544C16F9E4E4004BE457 /* werdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = werdit.h; sourceTree = "<group>"; };
 		965E544E16F9E4E4004BE457 /* liblept.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblept.a; sourceTree = "<group>"; };
 		965E544F16F9E4E4004BE457 /* libtesseract_all.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtesseract_all.a; sourceTree = "<group>"; };
-		965E545016F9E4E4004BE457 /* Tesseract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tesseract.h; path = OCR/Tesseract.h; sourceTree = "<group>"; };
-		965E545116F9E4E4004BE457 /* Tesseract.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Tesseract.mm; path = OCR/Tesseract.mm; sourceTree = "<group>"; };
+		965E545016F9E4E4004BE457 /* Tesseract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tesseract.h; path = "OCR/tesseract-ios/Classes/Tesseract.h"; sourceTree = "<group>"; };
+		965E545116F9E4E4004BE457 /* Tesseract.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Tesseract.mm; path = "OCR/tesseract-ios/Classes/Tesseract.mm"; sourceTree = "<group>"; };
 		965E546416F9E4EA004BE457 /* VCardImporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCardImporter.h; sourceTree = "<group>"; };
 		965E546516F9E4EA004BE457 /* VCardImporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCardImporter.m; sourceTree = "<group>"; };
 		965E546716F9E4FE004BE457 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; name = tessdata; path = OCR/tessdata; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 		965E535816F9E46E004BE457 = {
 			isa = PBXGroup;
 			children = (
+				9632FAD3170C926A002FD314 /* README.md */,
 				969E61D017034B9D00E3C50C /* Icon~iPad@2x.png */,
 				969E61CE17034B9900E3C50C /* Icon~iPad.png */,
 				969E61CC17034B9200E3C50C /* Icon@2x.png */,
@@ -372,6 +375,8 @@
 			children = (
 				965E53A616F9E4DD004BE457 /* QRScanner.h */,
 				965E53A716F9E4DD004BE457 /* QRScanner.mm */,
+				9632FAC7170C12D1002FD314 /* CustomOverlayView.h */,
+				9632FAC8170C12D1002FD314 /* CustomOverlayView.m */,
 			);
 			path = QR;
 			sourceTree = "<group>";
@@ -708,8 +713,6 @@
 				965E537B16F9E46E004BE457 /* Default-568h@2x.png in Resources */,
 				965E538116F9E46E004BE457 /* ViewController_iPhone.xib in Resources */,
 				965E538416F9E46E004BE457 /* ViewController_iPad.xib in Resources */,
-				965E545316F9E4E4004BE457 /* LICENSE in Resources */,
-				965E545416F9E4E4004BE457 /* README.md in Resources */,
 				965E546816F9E4FE004BE457 /* tessdata in Resources */,
 				969E61CB17034B8E00E3C50C /* Icon.png in Resources */,
 				969E61CD17034B9200E3C50C /* Icon@2x.png in Resources */,
@@ -734,6 +737,7 @@
 				965E546216F9E4E4004BE457 /* Tesseract.mm in Sources */,
 				965E546616F9E4EA004BE457 /* VCardImporter.m in Sources */,
 				969E61D9170353E500E3C50C /* CardScanViewController.m in Sources */,
+				9632FAC9170C12D1002FD314 /* CustomOverlayView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -846,6 +850,8 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sebastian Kruschwitz (756H674XWG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sebastian Kruschwitz (756H674XWG)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ScannerApp/ScannerApp-Prefix.pch";
 				INFOPLIST_FILE = "ScannerApp/ScannerApp-Info.plist";
@@ -854,6 +860,8 @@
 					"\"$(SRCROOT)/ScannerApp/OCR/tesseract-ios-lib/lib\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "19712605-30C2-488E-A774-8C29C5052B9D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "19712605-30C2-488E-A774-8C29C5052B9D";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -863,6 +871,8 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sebastian Kruschwitz (756H674XWG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sebastian Kruschwitz (756H674XWG)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ScannerApp/ScannerApp-Prefix.pch";
 				INFOPLIST_FILE = "ScannerApp/ScannerApp-Info.plist";
@@ -871,6 +881,8 @@
 					"\"$(SRCROOT)/ScannerApp/OCR/tesseract-ios-lib/lib\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "19712605-30C2-488E-A774-8C29C5052B9D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "19712605-30C2-488E-A774-8C29C5052B9D";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -26,6 +26,7 @@ typedef enum {
 
 @implementation ViewController
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -42,16 +43,21 @@ typedef enum {
     self.scanner = [[QRScanner alloc] init];
     _scanner.delegate = self;
     [_scanner presentScanWidgetOn:self];
+    
 }
 
 -(IBAction)showQRWidget:(id)sender {
     _scanMode = ScanModeQR;
+    
+    _textView.text = @"";
     
     [self openQRWidget];
 }
 
 -(IBAction)scanVCard:(id)sender {
     _scanMode = ScanModeVCard;
+    
+    _textView.text = @"";
     
     [self openQRWidget];
 }

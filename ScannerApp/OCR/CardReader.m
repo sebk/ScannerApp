@@ -16,22 +16,26 @@ int const maxImagePixelsAmount = 3200000; // 3.2 MP
 
 
 //- (NSString*)scanCard:(UIImage*)image {
-- (void)scanCard:(UIImage*)image completion:(void (^)(NSString *result))completion {
+- (void)scanCard:(UIImage*)image completion:(void (^)(NSString *result, UIImage *convertedImage))completion {
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         Tesseract* tesseract = [[Tesseract alloc] initWithDataPath:@"tessdata" language:@"eng"];
         
-        [tesseract setVariableValue:@"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz@.:/()& " forKey:@"tessedit_char_whitelist"];
+        [tesseract setVariableValue:@"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZÜÄÖabcdefghijklmnopqrstuvwxyzüäö@.:/()&- " forKey:@"tessedit_char_whitelist"];
         
-        [tesseract setImage:[self resizeImage:image]];
+        UIImage *changedImage = scaleAndRotateImage(image, maxImagePixelsAmount);
+        //UIImage *changedImage = [self scaleAndRotateImage:image];
+        
+        //[tesseract setImage:[self resizeImage:image]];
         //[tesseract setImage:gs_convert_image(image)];
-        //[tesseract setImage:scaleAndRotateImage(image, maxImagePixelsAmount)];
+        
+        [tesseract setImage:changedImage];
         
         [tesseract recognize];
         
         if (completion) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                completion([tesseract recognizedText]);
+                completion([tesseract recognizedText], changedImage);
 
             });
            
@@ -158,6 +162,7 @@ UIImage *scaleAndRotateImage(UIImage *image, int maxPixelsAmount)
 	CGSize imageSize = CGSizeMake(CGImageGetWidth(imgRef), CGImageGetHeight(imgRef));
 	CGFloat boundHeight;
 	UIImageOrientation orient = image.imageOrientation;
+    //orient = UIImageOrientationDown;
 	switch(orient) {
 		case UIImageOrientationUp:
 			transform = CGAffineTransformIdentity;
